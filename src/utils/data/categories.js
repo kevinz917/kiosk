@@ -1,7 +1,7 @@
 const Categories = [
+  "Main",
   "Drinks",
   "Appetizer",
-  "Main",
   "Specials",
   "Desserts",
   "Other",

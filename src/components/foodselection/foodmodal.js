@@ -44,7 +44,7 @@ const Foodmodal = (props) => {
   }
 
   return (
-    <div>
+    <div className="cursor-pointer">
       <div
         className="p-4 shadow-md border-4 border-gray-500 rounded-lg"
         onClick={openModal}
@@ -75,7 +75,6 @@ const Foodmodal = (props) => {
               onClick={() => dispatch(ADD_TO_CART(props.item))}
               className="p-4 bg-purple-400 text-white font-semibold text-xl"
             >
-              {" "}
               Add to cart
             </button>
           ) : (

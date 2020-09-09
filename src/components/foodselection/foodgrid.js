@@ -8,7 +8,10 @@ import Foodcard from "./foodcard";
 import Foodmodal from "./foodmodal";
 
 const Foodgrid = () => {
-  const foodList = useSelector((state) => state.foodReducer);
+  const selectedNavstate = useSelector((state) => state.NavselectReducer);
+  const foodList = useSelector((state) => state.foodReducer).filter(
+    (item) => item.type == selectedNavstate
+  );
   return (
     <div className="w-full p-8">
       <div className="grid grid-cols-3 gap-4">

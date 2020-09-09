@@ -36,6 +36,17 @@ const Main = [
   },
 ];
 
-const Foodmaster = [].concat(Main);
+const Drink = [
+  {
+    name: "Coke",
+    type: "Drinks",
+    price: 2.99,
+    options: ["Straw"],
+    image: null,
+    count: 0,
+  },
+];
+
+const Foodmaster = [].concat(Main, Drink);
 
 export { Foodmaster };

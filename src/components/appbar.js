@@ -33,6 +33,7 @@ const Appbar = (props) => {
         <div>Items: {localData.count}</div>
         <div>Price: {localData.price}</div>
       </div>
+      <div className="ml-5 cursor-pointer">Checkout</div>
     </div>
   );
 };
