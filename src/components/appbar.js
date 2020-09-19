@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
+import { Link } from "react-router-dom";
 
 // Styles
 import "../styles/tailwind.css";
@@ -33,7 +34,9 @@ const Appbar = (props) => {
         <div>Items: {localData.count}</div>
         <div>Price: {localData.price}</div>
       </div>
-      <div className="ml-5 cursor-pointer">Checkout</div>
+      <div className="ml-5 cursor-pointer">
+        <Link to="/checkout">Checkout</Link>
+      </div>
     </div>
   );
 };

@@ -48,13 +48,14 @@ const Foodmodal = (props) => {
       <div
         className="p-4 shadow-md border-4 border-gray-500 rounded-lg"
         onClick={openModal}
-        style={{ height: "200px" }}
       >
-        {" "}
+        <div className="h-64">
+          <img className="h-full rounded-lg" src={props.item.image} />
+        </div>
         {props.item.count != 0 ? (
           <div className="float-right p-2 bg-gray-300">{props.item.count}</div>
         ) : null}
-        <div>Insert image here</div>
+        <br />
         <div className="text-2xl font-bold">{props.item.name}</div>
         <div>{props.item.price} </div>
       </div>
@@ -65,7 +66,9 @@ const Foodmodal = (props) => {
         style={customStyles}
         contentLabel="Example Modal"
       >
-        <div>Insert image here </div>
+        <div className="h-64">
+          <img className="h-full rounded-lg" src={props.item.image} />
+        </div>
         <div className="text-2xl font-bold">{props.item.name}</div>
         <div className="text-xl">{props.item.price}</div>
         <div className="flex flex-row">
