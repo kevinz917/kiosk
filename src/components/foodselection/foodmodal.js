@@ -9,6 +9,8 @@ import {
   REMOVE_FROM_CART,
 } from "../../utils/redux/actions/cartAction";
 
+import { Fetching } from "../../utils/redux/reducers/food.js";
+
 // Styles
 import "../../styles/tailwind.css";
 

@@ -1,4 +1,22 @@
 import { Foodmaster } from "../../data/foodmaster";
+import axios from "axios";
+import { fetchFake } from "../../../services/mock";
+import { Dispatch } from "redux";
+import { SETLOADING } from "./loading";
+// Actions
+
+// Thunk returns a function
+const Fetching = (dispatch) => {
+  return (dispatch) => {
+    dispatch(SETLOADING(1));
+    fetchFake()
+      .then((fakeData) => {
+        console.log(fakeData);
+        dispatch(SETLOADING(0));
+      })
+      .catch(() => console.log("Kevin"));
+  };
+};
 
 const foodReducer = (state = Foodmaster, action) => {
   let index = -1;
@@ -65,4 +83,4 @@ const foodReducer = (state = Foodmaster, action) => {
   }
 };
 
-export { foodReducer };
+export { foodReducer, Fetching };
