@@ -28,13 +28,13 @@ const Appbar = (props) => {
   }, [foodState]);
 
   return (
-    <div className="flex items-center flex-row p-8 shadow-md">
-      <div className="text-2xl mr-8">Resto Name</div>
+    <div className="flex items-center flex-row p-8 shadow-md bg-gray-800 text-gray-100">
+      <div className="text-2xl mr-8">Kev's Diner</div>
       <div className="flex flex-col">
         <div>Items: {localData.count}</div>
         <div>Price: {localData.price}</div>
       </div>
-      <div className="ml-5 cursor-pointer">
+      <div className="float-right ml-5 cursor-pointer float-right bg-gray-700 pl-3 pr-3 pt-3 pb-3 rounded-lg hover bg-gray-400">
         <Link to="/checkout">Checkout</Link>
       </div>
     </div>

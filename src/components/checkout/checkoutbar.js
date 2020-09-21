@@ -6,7 +6,7 @@ import "../../styles/tailwind.css";
 
 const Checkoutbar = () => {
   return (
-    <div className="flex items-center flex-row p-8 shadow-md">
+    <div className="flex items-center flex-row p-8 shadow-md bg-gray-800 text-gray-100">
       <div className="text-2xl mr-8">
         <Link to="/">Resto name</Link>
       </div>

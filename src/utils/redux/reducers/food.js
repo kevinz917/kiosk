@@ -78,6 +78,9 @@ const foodReducer = (state = Foodmaster, action) => {
         };
       });
 
+    case "ADD_OPTION":
+    //Passes in name of item and name of option
+
     default:
       return state;
   }
