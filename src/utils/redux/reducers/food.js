@@ -30,7 +30,7 @@ const foodReducer = (state = Foodmaster, action) => {
         }
       }
 
-      console.log(index);
+      // console.log(index);
 
       if (index == -1) {
         return [...state, { ...action.item, count: 1 }];
@@ -78,8 +78,39 @@ const foodReducer = (state = Foodmaster, action) => {
         };
       });
 
-    case "ADD_OPTION":
-    //Passes in name of item and name of option
+    case "CHANGE_OPTION_AMOUNT":
+      let objIndex;
+      let optionIndex;
+
+      objIndex = state.findIndex((object) => object.name == action.foodName);
+
+      optionIndex = state[objIndex].options.findIndex(
+        (option) => option.name == action.optionName
+      );
+
+      // edge case 0 detect
+      if (
+        state[objIndex].options[optionIndex].count == 0 &&
+        action.amount == -1
+      ) {
+        return state;
+      }
+
+      // changing item in array
+      return state.map((item, i) => {
+        if (i != objIndex) {
+          return item;
+        }
+
+        let optionsCopy = state[i].options;
+        optionsCopy[optionIndex].count += action.amount;
+
+        // Otherwise
+        return {
+          ...item,
+          options: optionsCopy,
+        };
+      });
 
     default:
       return state;

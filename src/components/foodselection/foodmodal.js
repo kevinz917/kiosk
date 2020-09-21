@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import Modal from "react-modal";
 
 // Redux
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   ADD_TO_CART,
   REMOVE_FROM_CART,
+  CHANGE_OPTION_AMOUNT,
 } from "../../utils/redux/actions/cartAction";
 
 import { Fetching } from "../../utils/redux/reducers/food.js";
@@ -19,7 +20,7 @@ import "../../styles/tailwind.css";
 const customStyles = {
   content: {
     width: "70%",
-    height: "50%",
+    height: "75%",
     margin: "auto",
     border: "solid",
     borderRadius: "20px",
@@ -30,6 +31,7 @@ const customStyles = {
 const Foodmodal = (props) => {
   var subtitle;
   const [modalIsOpen, setIsOpen] = React.useState(false);
+  // const objectData = useSelector
 
   // Redux
   const dispatch = useDispatch();
@@ -74,11 +76,10 @@ const Foodmodal = (props) => {
         <div className="text-2xl font-bold">{props.item.name}</div>
         <div className="text-xl">{props.item.price}</div>
         <div className="flex flex-row">
-          <button onClick={closeModal}>close</button>
           {props.item.count == 0 ? (
             <button
               onClick={() => dispatch(ADD_TO_CART(props.item))}
-              className="p-4 bg-purple-400 text-white font-semibold text-xl"
+              className="p-4 bg-gray-700 pl-3 pr-3 pt-3 pb-3 rounded-lg font-semibold text-xl text-gray-100"
             >
               Add to cart
             </button>
@@ -100,6 +101,52 @@ const Foodmodal = (props) => {
             </div>
           )}
         </div>
+        <div className="text-2xl font-bold">Additional options:</div>
+        <br />
+        <div>
+          {props.item.options.map((item) => (
+            <div className="flex flex-row text-xl font-bold">
+              <div className="mr-8">{item.name}</div>
+              <div>{item.price}</div>
+              <button
+                onClick={() =>
+                  dispatch(
+                    CHANGE_OPTION_AMOUNT({
+                      foodName: props.item.name,
+                      optionName: item.name,
+                      amount: -1,
+                    })
+                  )
+                }
+                className="p-4 bg-gray-700 pl-3 pr-3 pt-3 pb-3 rounded-lg font-semibold text-xl text-gray-100"
+              >
+                -
+              </button>
+              <div>{item.count}</div>
+
+              <button
+                onClick={() =>
+                  dispatch(
+                    CHANGE_OPTION_AMOUNT({
+                      foodName: props.item.name,
+                      optionName: item.name,
+                      amount: 1,
+                    })
+                  )
+                }
+                className="p-4 bg-gray-700 pl-3 pr-3 pt-3 pb-3 rounded-lg font-semibold text-xl text-gray-100"
+              >
+                +
+              </button>
+            </div>
+          ))}
+        </div>
+        <button
+          onClick={closeModal}
+          className="p-4 bg-gray-700 pl-3 pr-3 pt-3 pb-3 rounded-lg font-semibold text-xl text-gray-100 mr-2"
+        >
+          close
+        </button>
       </Modal>
     </div>
   );

@@ -11,7 +11,7 @@ const Main = [
     ],
     image:
       "https://www.thespruceeats.com/thmb/LDrkRByRnQInfZF25HyLYSJ0Iyg=/960x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/garlic-burger-patties-333503-hero-01-e4df660ff27b4e5194fdff6d703a4f83.jpg",
-    count: 0,
+    count: 1,
   },
   {
     name: "Sandwich",

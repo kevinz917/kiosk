@@ -18,11 +18,18 @@ const Appbar = (props) => {
 
     for (var i = 0; i < foodState.length; i++) {
       if (foodState[i].count > 0) {
-        count = count + foodState[i].count;
-        price = price + foodState[i].count * foodState[i].price;
+        count += foodState[i].count;
+        price += foodState[i].count * foodState[i].price;
+        for (var j = 0; j < foodState[i].options.length; j++) {
+          if (foodState[i].options[j].count > 0) {
+            // console.log(foodState[i].options[j].name);
+            price +=
+              foodState[i].options[j].count * foodState[i].options[j].price;
+          }
+        }
       }
     }
-    console.log(foodState);
+    // console.log(foodState);
 
     setLocalData({ count, price });
   }, [foodState]);

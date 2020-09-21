@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { bindActionCreators, Dispatch } from "redux";
 import { connect, ConnectedProps } from "react-redux";
 import { SETLOADING } from "../../utils/redux/reducers/loading";
+import { CHANGE_OPTION_AMOUNT } from "../../utils/redux/actions/cartAction";
 import MoonLoader from "react-spinners/MoonLoader";
 
 // Styles
@@ -41,6 +42,19 @@ const Foodgrid = () => {
     <div className="w-full p-8">
       <div>
         <button onClick={() => fetchFake()}>Fetch Fake</button>
+        <button
+          onClick={() =>
+            dispatch(
+              CHANGE_OPTION_AMOUNT({
+                foodName: "Burger",
+                optionName: "Ketchup",
+                amount: 1,
+              })
+            )
+          }
+        >
+          Fake option increase
+        </button>
       </div>
 
       {loading ? (
