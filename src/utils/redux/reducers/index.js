@@ -6,7 +6,7 @@ import { cartReducer } from "./cart";
 import { NavselectReducer } from "./navselect";
 import { loadingReducer } from "./loading";
 import { testReducer } from "./test";
-import { recordReducer, tagReducer } from "./record";
+import { recordReducer, tagReducer, filterInputReducer } from "./record";
 
 const masterReducer = combineReducers({
   testReducer,
@@ -16,6 +16,7 @@ const masterReducer = combineReducers({
   loadingReducer,
   recordReducer,
   tagReducer,
+  filterInputReducer,
 });
 
 export default masterReducer;
