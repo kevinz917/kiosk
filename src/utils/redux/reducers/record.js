@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const mockRecord = [
   {
     id: 1847394,
@@ -6,6 +8,7 @@ const mockRecord = [
     size: "medium",
     method: "Credit",
     time: "09/17/2020/5:20pm",
+    status: "Processed",
   },
   {
     id: 2674833,
@@ -14,6 +17,7 @@ const mockRecord = [
     size: "small",
     method: "Cash",
     time: "09/17/2020/3:20pm",
+    status: "Processing",
   },
   {
     id: 18950374,
@@ -22,6 +26,7 @@ const mockRecord = [
     size: "small",
     method: "Cash",
     time: "09/17/2020/3:20pm",
+    status: "Failed",
   },
   {
     id: 2674833,
@@ -30,6 +35,7 @@ const mockRecord = [
     size: "small",
     method: "Cash",
     time: "09/17/2020/3:20pm",
+    status: "Processing",
   },
   {
     id: 18950374,
@@ -38,6 +44,7 @@ const mockRecord = [
     size: "small",
     method: "Cash",
     time: "09/17/2020/3:20pm",
+    status: "Processed",
   },
   {
     id: 2674833,
@@ -46,6 +53,7 @@ const mockRecord = [
     size: "small",
     method: "Cash",
     time: "09/17/2020/3:20pm",
+    status: "Processing",
   },
   {
     id: 18950374,
@@ -54,6 +62,7 @@ const mockRecord = [
     size: "small",
     method: "Cash",
     time: "09/17/2020/3:20pm",
+    status: "Processed",
   },
 ];
 
@@ -101,10 +110,35 @@ const recordReducer = (state = mockRecord, action) => {
   }
 };
 
+//Price range selector
+
+const priceRangeReducer = (state = 300, action) => {
+  switch (action.type) {
+    case "SET_RANGE":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+const SET_RANGE = (payload) => {
+  return {
+    type: "SET_RANGE",
+    payload,
+  };
+};
+
+//set flagged
+const setFlagged = (itemID) => {
+  const response = axios.post("");
+};
+
 export {
   recordReducer,
   SET_TAGS,
   tagReducer,
   filterInputReducer,
   SET_FILTER_INPUT,
+  SET_RANGE,
+  priceRangeReducer,
 };

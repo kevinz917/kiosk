@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Select from "react-select";
+import Slider from "react-input-slider";
 
-import { useDispatch } from "react-redux";
-import { SET_TAGS, SET_FILTER_INPUT } from "../../utils/redux/reducers/record";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  SET_TAGS,
+  SET_FILTER_INPUT,
+  SET_RANGE,
+} from "../../utils/redux/reducers/record";
 
 let tagCSS =
   "inline-block p-3 bg-gray-300 mb-1 mr-1 rounded-lg hover:bg-gray-400 cursor-pointer";
@@ -17,6 +22,8 @@ const Restaurantnav = (props) => {
   const [tags, setTags] = useState(filterTags);
   const [methodSelect, setMethodSelect] = useState(null);
   const [searchInput, setSearchInput] = useState("");
+  const globalSlider = useSelector((state) => state.priceRangeReducer);
+  const [sliderState, setSliderState] = useState({ x: 300 });
   const dispatch = useDispatch();
 
   const onInputChange = (e) => {
@@ -77,6 +84,20 @@ const Restaurantnav = (props) => {
           </React.Fragment>
         ))}
       </div>
+      <br />
+      <div className="text-xl font-semibold">Price range</div>
+      <div>Price: 0 - {sliderState.x}</div>
+      <Slider
+        axis="x"
+        xstep={0.01}
+        xmin={0}
+        xmax={300}
+        x={globalSlider}
+        onChange={({ x }) => {
+          setSliderState({ x: parseFloat(x.toFixed(0)) });
+          dispatch(SET_RANGE(x));
+        }}
+      />
     </div>
   );
 };
