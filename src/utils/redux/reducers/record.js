@@ -1,70 +1,7 @@
 import axios from "axios";
-
-const mockRecord = [
-  {
-    id: 1847394,
-    amount: 81.24,
-    items: [{ burger: 1 }, { sandwich: 1 }, { soup: 1 }],
-    size: "medium",
-    method: "Credit",
-    time: "09/17/2020/5:20pm",
-    status: "Processed",
-  },
-  {
-    id: 2674833,
-    amount: 14.23,
-    items: [{ sandwich: 1 }],
-    size: "small",
-    method: "Cash",
-    time: "09/17/2020/3:20pm",
-    status: "Processing",
-  },
-  {
-    id: 18950374,
-    amount: 124.23,
-    items: [{ sandwich: 1 }],
-    size: "small",
-    method: "Cash",
-    time: "09/17/2020/3:20pm",
-    status: "Failed",
-  },
-  {
-    id: 2674833,
-    amount: 14.23,
-    items: [{ sandwich: 1 }],
-    size: "small",
-    method: "Cash",
-    time: "09/17/2020/3:20pm",
-    status: "Processing",
-  },
-  {
-    id: 18950374,
-    amount: 124.23,
-    items: [{ sandwich: 1 }],
-    size: "small",
-    method: "Cash",
-    time: "09/17/2020/3:20pm",
-    status: "Processed",
-  },
-  {
-    id: 2674833,
-    amount: 14.23,
-    items: [{ sandwich: 1 }],
-    size: "small",
-    method: "Cash",
-    time: "09/17/2020/3:20pm",
-    status: "Processing",
-  },
-  {
-    id: 18950374,
-    amount: 124.23,
-    items: [{ sandwich: 1 }],
-    size: "small",
-    method: "Cash",
-    time: "09/17/2020/3:20pm",
-    status: "Processed",
-  },
-];
+import { record } from "../../api/record";
+import { SETLOADING } from "./loading";
+import { FetchRecord } from "../../api/record";
 
 const SET_TAGS = (payload) => {
   return { type: "SET_TAGS", tags: payload };
@@ -98,8 +35,17 @@ const filterInputReducer = (state = "", action) => {
   }
 };
 
-const recordReducer = (state = mockRecord, action) => {
+const POPULATE_RECORD = (payload) => {
+  console.log("In action");
+  return {
+    type: "POPULATE_RECORD",
+    payload,
+  };
+};
+const recordReducer = (state = [], action) => {
   switch (action.type) {
+    case "POPULATE_RECORD":
+      return action.payload;
     case "ADD_RECORD":
       return [...state, action.record];
     case "DELETE_RECORD":
@@ -110,6 +56,19 @@ const recordReducer = (state = mockRecord, action) => {
   }
 };
 
+const fetchingRecord = (dispatch) => {
+  return (dispatch) => {
+    dispatch(SETLOADING(0));
+    FetchRecord()
+      .then((data) => {
+        console.log(data);
+        dispatch(POPULATE_RECORD(data));
+        dispatch(SETLOADING(1));
+      })
+      .catch((err) => console.log(err));
+  };
+};
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Price range selector
 
 const priceRangeReducer = (state = 300, action) => {
@@ -141,4 +100,5 @@ export {
   SET_FILTER_INPUT,
   SET_RANGE,
   priceRangeReducer,
+  fetchingRecord,
 };

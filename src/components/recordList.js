@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import MoonLoader from "react-spinners/MoonLoader";
+import { useSelector, useDispatch } from "react-redux";
 import * as Fuse from "fuse.js";
 import RecordRow from "../components/table/recordRow";
 import { filterPlainArray, compareValues } from "../utils/other/array";
+import axios from "axios";
+import { mockRecord } from "../utils/redux/reducers/record";
+import { FetchRecord } from "../utils/api/record";
+import { fetchingRecord } from "../utils/redux/reducers/record";
 
 const gridHeaderValues = {
   id: "ID",
@@ -19,8 +24,11 @@ const options = {
 let keys = ["id", "amount", "size", "method", "time"];
 
 const RecordList = () => {
+  const dispatch = useDispatch();
+
   const recordList = useSelector((state) => state.recordReducer);
   const [filteredList, setFilteredList] = useState([]);
+  const isLoading = useSelector((state) => state.loadingReducer);
   const filterInput = useSelector((state) => state.filterInputReducer);
   const tags = useSelector((state) => state.tagReducer);
   const [filters, setFilters] = useState([]);
@@ -69,9 +77,10 @@ const RecordList = () => {
     setFilteredList(newList.filter((item) => item.amount < rangeValue));
 
     // setFilteredList(newList);
-  }, [tags, filterInput, sortArray, rangeValue]);
+  }, [tags, filterInput, sortArray, rangeValue, recordList]);
 
   useEffect(() => {
+    dispatch(fetchingRecord());
     // Retrieve and dispatch to redux on landing
   }, []);
 
@@ -82,8 +91,14 @@ const RecordList = () => {
     );
   };
 
+  const fakeFetch = async () => {
+    // dispatch(fetchingRecord());
+    console.log(process.env.REACT_APP_KEY);
+  };
+
   return (
     <div className="p-8 w-full">
+      <button onClick={fakeFetch}>Fake fetch</button>
       <div className="grid grid-cols-5 bg-gray-100 w-full mb-1 mt-1 p-3 cursor-pointer">
         <div onClick={() => SetSorting(0)} className="flex flex-row">
           ID {symbolRotate(0)}
@@ -99,9 +114,19 @@ const RecordList = () => {
         </div>
         <div>Status</div>
       </div>
-      {filteredList.map((record) => (
-        <RecordRow item={record} id={record.id} />
-      ))}
+      {isLoading == 0 ? (
+        <div className="flex w-full mt-32 content-center">
+          <div className="m=0 m-auto">
+            <MoonLoader size={70} color={"#123abc"} />
+          </div>
+        </div>
+      ) : (
+        <div>
+          {filteredList.map((record) => (
+            <RecordRow item={record} id={record.id} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
