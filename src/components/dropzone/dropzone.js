@@ -51,7 +51,7 @@ const Upload = (props) => {
         <section className="container">
           <div
             {...getRootProps({ className: "dropzone" })}
-            className="bg-gray-200 w-2/5 p-8 rounded-lg border-dashed border-gray-400 border-4 text-center"
+            className="bg-gray-200 w-full p-8 rounded-lg border-dashed border-gray-400 border-4 text-center"
           >
             <div>
               <input {...getInputProps()} />
