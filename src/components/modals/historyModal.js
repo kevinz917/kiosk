@@ -45,7 +45,7 @@ const HistoryModal = () => {
         contentLabel="Example Modal"
       >
         <div>
-          <button className="p-3 bg-gray-200" onClick={closeModal}>
+          <button className="p-3 bg-gray-200 rounded-md" onClick={closeModal}>
             Close Modal
           </button>
         </div>

@@ -55,17 +55,10 @@ const Upload = (props) => {
           >
             <div>
               <input {...getInputProps()} />
-              <p>Drag 'n' drop some files here, or click to select files</p>
+              <p>{props.text}</p>
             </div>
           </div>
-          <aside>
-            <h4>Files</h4>
-            <ul>{files}</ul>
-          </aside>
         </section>
-      </div>
-      <div>
-        <button onClick={() => handleImageUpload()}>Press me</button>
       </div>
       <br />
       <div>
@@ -78,5 +71,14 @@ const Upload = (props) => {
     </div>
   );
 };
+
+// <div>
+//         <button onClick={() => handleImageUpload()}>Press me</button>
+//       </div>
+
+// <aside>
+//             <h4>Files</h4>
+//             <ul>{files}</ul>
+//           </aside>
 
 export default Upload;

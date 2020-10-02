@@ -4,9 +4,6 @@ import { useSelector, useDispatch } from "react-redux";
 import * as Fuse from "fuse.js";
 import RecordRow from "../components/table/recordRow";
 import { filterPlainArray, compareValues } from "../utils/other/array";
-import axios from "axios";
-import { mockRecord } from "../utils/redux/reducers/record";
-import { FetchRecord } from "../utils/api/record";
 import { fetchingRecord } from "../utils/redux/reducers/record";
 
 const gridHeaderValues = {
@@ -16,12 +13,12 @@ const gridHeaderValues = {
   size: "Size",
 };
 
+let keys = ["id", "amount", "size", "method", "time"];
+
 const options = {
   threshold: 0.2,
-  keys: ["id", "amount", "size", "method", "time"],
+  keys: keys,
 };
-
-let keys = ["id", "amount", "size", "method", "time"];
 
 const RecordList = () => {
   const dispatch = useDispatch();
@@ -57,12 +54,12 @@ const RecordList = () => {
     setFilters(temp);
 
     let newList = filterPlainArray(recordList, { size: temp });
-    console.log(filterInput);
+    // console.log(filterInput);
 
     var fuse = new Fuse(newList, options);
     if (filterInput != "") {
       newList = fuse.search(filterInput);
-      console.log(newList);
+      // console.log(newList);
     }
 
     if (sortArray.includes(1)) {
@@ -91,14 +88,11 @@ const RecordList = () => {
     );
   };
 
-  const fakeFetch = async () => {
-    // dispatch(fetchingRecord());
-    console.log(process.env.REACT_APP_KEY);
-  };
-
   return (
     <div className="p-8 w-full">
-      <button onClick={fakeFetch}>Fake fetch</button>
+      <button className="p-3 bg-purple-600 text-white rounded-md hover:bg-purple-800 mb-3">
+        Add new order +
+      </button>
       <div className="grid grid-cols-5 bg-gray-100 w-full mb-1 mt-1 p-3 cursor-pointer">
         <div onClick={() => SetSorting(0)} className="flex flex-row">
           ID {symbolRotate(0)}
@@ -123,7 +117,7 @@ const RecordList = () => {
       ) : (
         <div>
           {filteredList.map((record) => (
-            <RecordRow item={record} id={record.id} />
+            <RecordRow item={record} id={record.id} key={record._id} />
           ))}
         </div>
       )}
@@ -131,5 +125,4 @@ const RecordList = () => {
   );
 };
 
-// <RecordRow item={gridHeaderValues} />
 export default RecordList;

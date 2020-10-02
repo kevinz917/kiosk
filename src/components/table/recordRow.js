@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 // import HistoryModal from "../modals/historyModal";
 import Modal from "react-modal";
 
+import { SET_FLAGGED } from "../../utils/redux/reducers/record";
+
 const HistoryModalSetting = {
   content: {
     width: "600px",
@@ -25,8 +27,13 @@ const setStatusColor = (name) => {
   }
 };
 
+//History Modal
 const HistoryModal = (props) => {
   const [flag, setFlag] = useState(false);
+
+  useEffect(() => {
+    setFlag(props.item.flagged);
+  }, [props.item]);
 
   const toggleFlag = () => {
     setFlag(!flag);
@@ -54,9 +61,16 @@ const HistoryModal = (props) => {
   );
 };
 
+//Record Row
 const RecordRow = (props) => {
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [flag, setFlag] = useState(false);
+  const [flag, setFlag] = useState(true);
+
+  // on landing
+
+  // useEffect(() => {
+  //   setFlag(props.item.flagged);
+  // }, [props.item]);
 
   useEffect(() => {
     console.log(flag);

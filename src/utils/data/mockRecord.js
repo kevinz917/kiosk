@@ -7,7 +7,7 @@ const mockRecord = [
     method: "Credit",
     time: "09/17/2020/5:20pm",
     status: "Processed",
-    flagged: false,
+    flagged: true,
   },
   {
     id: 2674833,
@@ -17,7 +17,7 @@ const mockRecord = [
     method: "Cash",
     time: "09/17/2020/3:20pm",
     status: "Processing",
-    flagged: false,
+    flagged: true,
   },
   {
     id: 18950374,

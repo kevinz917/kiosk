@@ -51,6 +51,18 @@ const recordReducer = (state = [], action) => {
     case "DELETE_RECORD":
       // takes in recordID
       return state;
+    case "SET_FLAGGED":
+      return state.map((item, index) => {
+        if (item.id !== action.payload.objectID) {
+          return item;
+        }
+        // Otherwise, this is the one we want - return an updated value
+        return {
+          ...item,
+          flagged: item.flagged,
+        };
+      });
+
     default:
       return state;
   }
@@ -87,10 +99,17 @@ const SET_RANGE = (payload) => {
   };
 };
 
-//set flagged
-const setFlagged = (itemID) => {
-  const response = axios.post("");
+//set Flagged (in record) /////
+// Action
+const SET_FLAGGED = (payload) => {
+  return {
+    type: "SET_FLAGGED",
+    objectID: payload.ID,
+    value: payload.value,
+  };
 };
+
+// Reducer
 
 export {
   recordReducer,
@@ -101,4 +120,5 @@ export {
   SET_RANGE,
   priceRangeReducer,
   fetchingRecord,
+  SET_FLAGGED,
 };

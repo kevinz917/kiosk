@@ -18,7 +18,7 @@ const Header = () => {
       <div className="text-2xl mr-8">Restaurant Dashboard</div>
       <HeaderLink text="Menu" link="menu" />
       <HeaderLink text="Database" link="dashboard" />
-      <HeaderLink text="Staff" link="staff" />
+      <HeaderLink text="Campaign" link="campaign" />
     </div>
   );
 };
