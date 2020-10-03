@@ -1,6 +1,21 @@
 import React, { useState, useEffect } from "react";
 import HeaderUser from "../../components/header/headerUser";
 import DealContent from "../../components/userView/dealContent";
+import axios from 'axios';
+
+// var deals = [];
+
+// axios.get('http://localhost:8000/deals/')
+// .then(function (response) {
+//   // handle success
+//   // console.log(response);
+//   deals = response.data
+//   console.log(deals)
+// })
+// .catch(function (error) {
+//   // handle error
+//   console.log(error);
+// });
 
 const sample1 = {
   name: "Crazy Sushi Deal",
@@ -27,11 +42,11 @@ const sample2 = {
 };
 
 const UserDashboard = () => {
-  const [modalIsOpen, setIsOpen] = React.useState(true);
-
-  const toggleModal = () => {
-    setIsOpen(!modalIsOpen);
-  };
+  // const [modalIsOpen, setIsOpen] = React.useState(true);
+  // console.log(deals);
+  // const toggleModal = () => {
+  //   setIsOpen(!modalIsOpen);
+  // };
 
   return (
     <div>

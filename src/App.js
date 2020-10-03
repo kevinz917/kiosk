@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 // Styles
 import "./styles/tailwind.css";
-import { AnimatedSwitch } from "react-router-transition";
+// import { AnimatedSwitch } from "react-router-transition";
 
 // Screens
 import Main from "./screens/main";
@@ -17,6 +17,7 @@ import Test from "./screens/test";
 import Dashboard from "./screens/restaurant/dashboard";
 import Menu from "./screens/restaurant/menu";
 import CampaignDashboard from "./screens/campaign/campaignDashboard";
+
 import UserDashboard from "./screens/user/userDashboard";
 import AccountDashboard from "./screens/user/accountDashboard";
 import CampaignDetail from "./screens/campaign/campaignDetail";
