@@ -10,7 +10,6 @@ export default function DealModal(props){
         <>
           <div
             className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
-            onClick={() => setShowModal(false)}
           >
             <div className="relative w-auto my-6 max-w-3xl" style={{width: "80vw"}}>
               {/*content*/}
@@ -44,6 +43,9 @@ export default function DealModal(props){
                   </p>
                   <p className="mt-0 text-gray-600 text-lg leading-relaxed">
                     Price: ${props.item.price} 
+                  </p>
+                  <p className="mt-0 text-gray-600 text-base leading-relaxed">
+                    {props.item.description}
                   </p>
                 </div>
 

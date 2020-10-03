@@ -8,6 +8,7 @@ const sample1 = {
   img_url: "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80",
   spots: 10,
   total: 40,
+  description: "Hand-crafted Sushi by reknowned chef Michael Chen",
   timeleft: 90,
   price: 5,
 };
@@ -16,6 +17,7 @@ const sample2 = {
   name: "Sick deal",
   restaurant: "Noodle Shack",
   img_url: "https://0013a05e776cb3a3cacf-7d16a3f45b9fed243f74feb2d088df02.ssl.cf1.rackcdn.com/Andy-Post-Food-Photography-Ramen-Noodles.jpg",
+  description: "Awe-inspiring ramen that actually makes people sick",
   spots: 20,
   total: 40,
   timeleft: 4,
