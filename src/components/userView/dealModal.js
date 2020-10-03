@@ -34,12 +34,12 @@ export default function DealModal(props){
 
                 
                 <div className="mt-2 bg-gray-600 rounded-full">
-                    <div class="mt-2 bg-blue-400 py-1 text-center rounded-full" style={{width: (props.item.total - props.item.spots)/props.item.total *100 + "%"}}>
-                        <div class="text-white text-sm inline-block bg-blue-800 px-2 rounded-full">{(props.item.total - props.item.spots)/props.item.total *100}%</div>
+                    <div class="mt-2 bg-blue-400 py-1 text-center rounded-full" style={{width: (props.item.totalSpots - props.item.remainingSpots)/props.item.totalSpots *100 + "%"}}>
+                        <div class="text-white text-sm inline-block bg-blue-800 px-2 rounded-full">{(props.item.totalSpots - props.item.remainingSpots)/props.item.totalSpots *100}%</div>
                     </div>
                 </div>
                   <p className="mt-4 text-gray-600 text-lg leading-relaxed">
-                    <b>{props.item.spots} more to go!</b>
+                    <b>{props.item.remainingSpots} more to go!</b>
                   </p>
                   <p className="mt-0 text-gray-600 text-lg leading-relaxed">
                     Price: <b>${props.item.price}</b>

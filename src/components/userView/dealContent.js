@@ -7,7 +7,7 @@ const DealContent = (props) => {
       className="flex flex-col justify-center items-center max-w-lg mx-auto"
       style={{ width: "80vw", height: "400px" }}
     >
-      <div className="h-64 w-full rounded-lg shadow-md bg-cover bg-center" style={{backgroundImage: "url('" + props.item.img_url + "')"}}>
+      <div className="h-64 w-full rounded-lg shadow-md bg-cover bg-center" style={{backgroundImage: "url('" + props.item.imgUrl + "')"}}>
 
       </div>
       <div className="w-56 md:w-64 bg-white -mt-10 shadow-lg rounded-lg overflow-hidden">
@@ -16,10 +16,7 @@ const DealContent = (props) => {
         <div className="flex items-center justify-between pt-2 px-3 bg-gray-400">
         <h1 className="text-gray-800 font-bold ">Time Left: {props.item.timeleft} mins</h1>
         {/* <h1 className="text-gray-800 font-bold ">Time Left: {props.item.timeleft}</h1> */}
-
-          
         </div>
-        
         <div className="flex items-center justify-between pb-2 px-3 bg-gray-400">
         <h1 className="text-gray-600 font-bold ">@{props.item.restaurant}</h1>
         <DealModal item={props.item}/>
