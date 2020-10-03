@@ -39,10 +39,10 @@ export default function DealModal(props){
                     </div>
                 </div>
                   <p className="mt-4 text-gray-600 text-lg leading-relaxed">
-                    {props.item.spots} spots left!
+                    <b>{props.item.spots} more to go!</b>
                   </p>
                   <p className="mt-0 text-gray-600 text-lg leading-relaxed">
-                    Price: ${props.item.price} 
+                    Price: <b>${props.item.price}</b>
                   </p>
                   <p className="mt-0 text-gray-600 text-base leading-relaxed">
                     {props.item.description}

@@ -14,7 +14,7 @@ const sample1 = {
 };
 
 const sample2 = {
-  name: "Sick deal",
+  name: "Sick Deal",
   restaurant: "Noodle Shack",
   img_url: "https://0013a05e776cb3a3cacf-7d16a3f45b9fed243f74feb2d088df02.ssl.cf1.rackcdn.com/Andy-Post-Food-Photography-Ramen-Noodles.jpg",
   description: "Awe-inspiring ramen that actually makes people sick",
