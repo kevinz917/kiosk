@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import request from "superagent";
 import axios from "axios";
+import MoonLoader from "react-spinners/MoonLoader";
 
 const CLOUDINARY_UPLOAD_PRESET = "sinme3ku";
 const CLOUDINARY_UPLOAD_URL =
@@ -22,8 +23,30 @@ const Upload = (props) => {
   ));
 
   useEffect(() => {
+    setUploadedUrl("");
     setUploadedFile(acceptedFiles[0]);
     console.log(acceptedFiles[0]);
+
+    if (acceptedFiles.length > 0) {
+      let upload = request
+        .post(CLOUDINARY_UPLOAD_URL)
+        .field("upload_preset", CLOUDINARY_UPLOAD_PRESET)
+        .field("file", acceptedFiles[0]);
+
+      console.log("Logging");
+
+      upload.end((err, response) => {
+        if (err) {
+          console.error(err);
+        }
+
+        if (response.body.secure_url !== "") {
+          props.setImageURL(response.body.secure_url);
+          setUploadedUrl(response.body.secure_url);
+          console.log("Success");
+        }
+      });
+    }
   }, [acceptedFiles]);
 
   const handleImageUpload = async () => {
@@ -51,34 +74,32 @@ const Upload = (props) => {
         <section className="container">
           <div
             {...getRootProps({ className: "dropzone" })}
-            className="bg-gray-200 w-full p-8 rounded-lg border-dashed border-gray-400 border-4 text-center"
+            className="bg-gray-200 w-full rounded-lg border-dashed border-gray-400 border-4 flex items-center justify-center"
+            style={{ height: props.height }}
           >
             <div>
               <input {...getInputProps()} />
-              <p>{props.text}</p>
+              <div>
+                {acceptedFiles.length > 0 && uploadedUrl.length > 0 ? (
+                  <div className="flex flex-col justify-center">
+                    <div>{acceptedFiles[0].name} </div>
+                    <div className="text-center">Click to upload again</div>
+                  </div>
+                ) : acceptedFiles.length > 0 ? (
+                  <div>
+                    <MoonLoader size={40} />
+                  </div>
+                ) : (
+                  <div>{props.text}</div>
+                )}
+              </div>
             </div>
           </div>
         </section>
       </div>
       <br />
-      <div>
-        {uploadedUrl != "" ? (
-          <a href={uploadedUrl} target="_blank" style={{ color: "Blue" }}>
-            {uploadedUrl}
-          </a>
-        ) : null}
-      </div>
     </div>
   );
 };
-
-// <div>
-//         <button onClick={() => handleImageUpload()}>Press me</button>
-//       </div>
-
-// <aside>
-//             <h4>Files</h4>
-//             <ul>{files}</ul>
-//           </aside>
 
 export default Upload;

@@ -12,14 +12,16 @@ import {
   filterInputReducer,
   priceRangeReducer,
 } from "./record";
+import { campaignReducer } from "./campaign";
 
 const masterReducer = combineReducers({
+  recordReducer,
+  campaignReducer,
+  loadingReducer,
   testReducer,
   foodReducer,
   cartReducer,
   NavselectReducer,
-  loadingReducer,
-  recordReducer,
   tagReducer,
   filterInputReducer,
   priceRangeReducer,

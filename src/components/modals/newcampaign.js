@@ -26,6 +26,20 @@ const NewcampaignModal = (props) => {
   const [other, setOther] = useState("");
   const [price, setPrice] = useState("");
   const [discountedPrice, setDiscountedPrice] = useState(0);
+  const [selectedItems, setSelectedItems] = useState([]);
+  const [imageURL, setImageURL] = useState("");
+
+  const onSubmit = () => {
+    const eventObj = {
+      name: eventname,
+      price: price,
+      discountedPrice: discountedPrice,
+    };
+  };
+
+  useEffect(() => {
+    console.log(selectedItems);
+  }, [selectedItems]);
 
   const discountedPriceChange = (value) => {
     setDiscountedPrice(value);
@@ -51,6 +65,7 @@ const NewcampaignModal = (props) => {
         <SelectSearch
           discountedPriceChange={discountedPriceChange}
           discountedPrice={discountedPrice}
+          setSelectedItems={setSelectedItems}
         />
         <input
           className={input}
@@ -70,7 +85,12 @@ const NewcampaignModal = (props) => {
           value={price}
           onChange={(event) => onChange(event, setPrice)}
         />
-        <Dropzone width="100%" height="200px" text="Upload campaign image" />
+        <Dropzone
+          width="100%"
+          height="100px"
+          text="Upload campaign image"
+          setImageURL={setImageURL}
+        />
         <div className="w-full flex flex-row-reverse mb-4">
           <div className="right-0">
             <button

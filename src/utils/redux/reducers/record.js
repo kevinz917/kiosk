@@ -2,6 +2,7 @@ import axios from "axios";
 import { record } from "../../api/record";
 import { SETLOADING } from "./loading";
 import { FetchRecord } from "../../api/record";
+import { mockRecord } from "../../data/mockRecord";
 
 const SET_TAGS = (payload) => {
   return { type: "SET_TAGS", tags: payload };
@@ -42,7 +43,7 @@ const POPULATE_RECORD = (payload) => {
     payload,
   };
 };
-const recordReducer = (state = [], action) => {
+const recordReducer = (state = mockRecord, action) => {
   switch (action.type) {
     case "POPULATE_RECORD":
       return action.payload;
@@ -70,14 +71,14 @@ const recordReducer = (state = [], action) => {
 
 const fetchingRecord = (dispatch) => {
   return (dispatch) => {
-    dispatch(SETLOADING(0));
-    FetchRecord()
-      .then((data) => {
-        console.log(data);
-        dispatch(POPULATE_RECORD(data));
-        dispatch(SETLOADING(1));
-      })
-      .catch((err) => console.log(err));
+    dispatch(SETLOADING(1));
+    // FetchRecord()
+    //   .then((data) => {
+    //     console.log(data);
+    //     dispatch(POPULATE_RECORD(data));
+    //     dispatch(SETLOADING(1));
+    //   })
+    //   .catch((err) => console.log(err));
   };
 };
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
