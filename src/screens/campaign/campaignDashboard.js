@@ -3,12 +3,18 @@ import Header from "../../components/header/header";
 import CampaignCard from "../../components/cards/campaignCard";
 import CampaignContent from "../../components/cards/campaignContent";
 import Newcampaign from "../../components/modals/newcampaign";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchingCampaign } from "../../utils/redux/reducers/campaign";
+import MoonLoader from "react-spinners/MoonLoader";
+import "../../styles/animation.css";
 
 const sample1 = {
   name: "Crazy sushi deal",
   status: "Live",
   responses: 132,
   timeleft: 90,
+  image:
+    "https://images.japancentre.com/recipes/pics/18/main/makisushi.jpg?1557308201",
 };
 
 const sample2 = {
@@ -16,10 +22,19 @@ const sample2 = {
   status: "Ended",
   responses: 12,
   timeleft: 0,
+  image:
+    "https://upload.wikimedia.org/wikipedia/commons/6/6d/Good_Food_Display_-_NCI_Visuals_Online.jpg",
 };
 
 const CampaignDashboard = () => {
-  const [modalIsOpen, setIsOpen] = React.useState(true);
+  const dispatch = useDispatch();
+  const campaignList = useSelector((state) => state.campaignReducer);
+  const isLoading = useSelector((state) => state.loadingReducer);
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+
+  useEffect(() => {
+    dispatch(fetchingCampaign());
+  }, []);
 
   const toggleModal = () => {
     setIsOpen(!modalIsOpen);
@@ -38,18 +53,31 @@ const CampaignDashboard = () => {
   return (
     <div>
       <Header />
-      <div className="flex flex-row p-16">
-        <div onClick={toggleModal}>
-          <CampaignCard />
-        </div>
-        <CampaignContent item={sample1} />
-        <CampaignContent item={sample2} />
+      <div>
+        {isLoading ? (
+          <div class="fade-in">
+            <div className="flex flex-row p-16">
+              <div onClick={toggleModal}>
+                <CampaignCard />
+              </div>
+              <CampaignContent item={sample1} link="/sample" />
+              <CampaignContent item={sample2} link="/sample" />
+            </div>
+            <Newcampaign
+              modalIsOpen={modalIsOpen}
+              afterOpenModal={afterOpenModal}
+              closeModal={closeModal}
+            />
+          </div>
+        ) : (
+          <div className="flex w-full mt-32 content-center">
+            <div className="m=0 m-auto">
+              <MoonLoader size={70} color={"#123abc"} />
+            </div>
+          </div>
+        )}
       </div>
-      <Newcampaign
-        modalIsOpen={modalIsOpen}
-        afterOpenModal={afterOpenModal}
-        closeModal={closeModal}
-      />
+      ;
     </div>
   );
 };

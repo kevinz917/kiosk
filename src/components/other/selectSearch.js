@@ -5,10 +5,30 @@ const inputSetting = "p-3 bg-gray-200 rounded-md mb-1 w-full";
 const inputSmall = "p-3 bg-gray-200 rounded-md mb-4";
 
 const foodList = [
-  { name: "Sushi", price: 14.23 },
-  { name: "Steak", price: 23.24 },
-  { name: "Chips", price: 1.99 },
-  { name: "Coke", price: 42.32 },
+  {
+    name: "Sushi",
+    price: 14.23,
+    image:
+      "https://barbecuebible.com/wp-content/uploads/2013/05/featured-great-american-hamburger-1024x640.jpg",
+  },
+  {
+    name: "Steak",
+    price: 23.24,
+    image:
+      "https://img.buzzfeed.com/thumbnailer-prod-us-east-1/966b425bb57f4962b8fe297ae5b846d2/bfv8220_Steak_With_Garlic_Butter-FB1080.jpg?output-format=auto&output-quality=auto",
+  },
+  {
+    name: "Chips",
+    price: 1.99,
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Potato-Chips.jpg/1200px-Potato-Chips.jpg",
+  },
+  {
+    name: "Coke",
+    price: 42.32,
+    image:
+      "https://us.coca-cola.com/content/dam/coke2016/page-properties-images/Coke_PageProperties.jpg",
+  },
 ];
 
 const SelectSearch = (props) => {
@@ -29,13 +49,15 @@ const SelectSearch = (props) => {
   //   Sum useEffect
   useEffect(() => {
     let sum = 0;
+    let objList = [];
     for (let i = 0; i < itemList.length; i++) {
       if (selectedItems.includes(itemList[i].name)) {
         sum = sum + itemList[i].price;
+        objList.push(itemList[i]);
       }
     }
-
     setPrice(sum);
+    props.setSelectedItems(objList);
   }, [selectedItems]);
 
   const onSelectItem = (item) => {
@@ -45,8 +67,9 @@ const SelectSearch = (props) => {
     }
   };
 
+  useEffect(() => {}, [selectedItems]);
+
   const onDeleteItem = (item) => {
-    console.log(item.name);
     let idx = selectedItems.indexOf(item.name);
     let temp = selectedItems.slice();
     temp.splice(idx, 1);

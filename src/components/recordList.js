@@ -5,6 +5,7 @@ import * as Fuse from "fuse.js";
 import RecordRow from "../components/table/recordRow";
 import { filterPlainArray, compareValues } from "../utils/other/array";
 import { fetchingRecord } from "../utils/redux/reducers/record";
+import "../styles/animation.css";
 
 const gridHeaderValues = {
   id: "ID",
@@ -78,7 +79,6 @@ const RecordList = () => {
 
   useEffect(() => {
     dispatch(fetchingRecord());
-    // Retrieve and dispatch to redux on landing
   }, []);
 
   const symbolRotate = (index) => {
@@ -90,6 +90,25 @@ const RecordList = () => {
 
   return (
     <div className="p-8 w-full">
+      <div className="w-full rounded-md bg-gray-200 p-3 flex flex-row mb-4">
+        <div
+          className="mr-3 bg-gray-500 rounded-md"
+          style={{ width: "100px", height: "100px" }}
+        ></div>
+        <div>
+          <div className="font-bold text-2xl mb-2">Sushi bundle deal</div>
+          <div className="flex flex-row">
+            <div style={{ width: "200px" }}>
+              <div>Status: Live</div>
+              <div>Responses: 212</div>
+            </div>
+            <div>
+              <div>Time: 20min</div>
+              <div>Note </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <button className="p-3 bg-purple-600 text-white rounded-md hover:bg-purple-800 mb-3">
         Add new order +
       </button>
@@ -115,7 +134,7 @@ const RecordList = () => {
           </div>
         </div>
       ) : (
-        <div>
+        <div className="fade-in">
           {filteredList.map((record) => (
             <RecordRow item={record} id={record.id} key={record._id} />
           ))}

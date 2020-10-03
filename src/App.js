@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 // Styles
 import "./styles/tailwind.css";
+import { AnimatedSwitch } from "react-router-transition";
 
 // Screens
 import Main from "./screens/main";
@@ -18,13 +19,16 @@ import Menu from "./screens/restaurant/menu";
 import CampaignDashboard from "./screens/campaign/campaignDashboard";
 import UserDashboard from "./screens/user/userDashboard";
 import AccountDashboard from "./screens/user/accountDashboard";
+import CampaignDetail from "./screens/campaign/campaignDetail";
+
 // Admin
 import Admin from "./screens/admin/admin";
 
-function App() {
+function App({ location }) {
   return (
     <Router>
       <Switch>
+        <Route exact path="/campaign/:campaignID" component={CampaignDetail} />
         <Route exact path="/campaign" component={CampaignDashboard} />
         <Route exact path="/deals" component={UserDashboard} />
         <Route exact path="/admin" component={Admin} />
