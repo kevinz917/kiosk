@@ -6,6 +6,7 @@ import RecordRow from "../components/table/recordRow";
 import { filterPlainArray, compareValues } from "../utils/other/array";
 import { fetchingRecord } from "../utils/redux/reducers/record";
 import "../styles/animation.css";
+import axios from "axios";
 
 const gridHeaderValues = {
   id: "ID",
@@ -88,6 +89,15 @@ const RecordList = () => {
     );
   };
 
+  const fetchFake = async () => {
+    axios
+      .get("http://chenyoung01.pythonanywhere.com/outputs/orders/", {
+        method: "GET",
+      })
+      .then((data) => console.log(data))
+      .catch((err) => console.log(err));
+  };
+
   return (
     <div className="p-8 w-full">
       <div className="w-full rounded-md bg-gray-200 p-3 flex flex-row mb-4">
@@ -109,6 +119,7 @@ const RecordList = () => {
           </div>
         </div>
       </div>
+      <button onClick={fetchFake}>Fetch fake</button>
       <button className="p-3 bg-purple-600 text-white rounded-md hover:bg-purple-800 mb-3">
         Add new order +
       </button>
