@@ -17,7 +17,7 @@ import Dashboard from "./screens/restaurant/dashboard";
 import Menu from "./screens/restaurant/menu";
 import CampaignDashboard from "./screens/campaign/campaignDashboard";
 import UserDashboard from "./screens/user/userDashboard";
-
+import AccountDashboard from "./screens/user/accountDashboard";
 // Admin
 import Admin from "./screens/admin/admin";
 
@@ -26,13 +26,14 @@ function App() {
     <Router>
       <Switch>
         <Route exact path="/campaign" component={CampaignDashboard} />
-        <Route exact path="/user" component={UserDashboard} />
+        <Route exact path="/deals" component={UserDashboard} />
         <Route exact path="/admin" component={Admin} />
         <Route exact path="/dashboard" component={Dashboard} />
         <Route exact path="/menu" component={Menu} />
         <Route exact path="/test" component={Test} />
         <Route exact path="/checkout" component={Checkout} />
         <Route exact path="/" component={Main} />
+        <Route exact path="/account" component ={AccountDashboard} />
       </Switch>{" "}
     </Router>
   );

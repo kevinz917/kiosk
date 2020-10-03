@@ -10,6 +10,7 @@ const sample1 = {
   totalSpots: 40, //Total number of spots
   description: "Hand-crafted Sushi by reknowned chef Michael Chen",
   timeleft: 90,
+  itemLists: [{name: "steak", price: 1, url: "https://hips.hearstapps.com/del.h-cdn.co/assets/18/08/1519155106-flank-steak-horizontal.jpg"}, {name: "apple", price: 1, url: "https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max"}],
   price: 5,
 };
 
@@ -20,6 +21,7 @@ const sample2 = {
   description: "Awe-inspiring ramen that actually makes people sick",
   remainingSpots: 20,
   totalSpots: 40,
+  itemLists: [{name: "steak", price: 1, url: "https://hips.hearstapps.com/del.h-cdn.co/assets/18/08/1519155106-flank-steak-horizontal.jpg"}, {name: "apple", price: 1, url: "https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max"}],
   timeleft: 4,
   price: 10,
 };
